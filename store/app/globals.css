@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+@layer utilities {
+  .center {
+    @apply flex h-screen justify-center items-center bg-amber-100;
+  }
+
+  .h1 {
+    @apply text-[34px] leading-[42px] font-bold;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .shad-form-item {
+    @apply flex h-[78px] flex-col justify-center rounded-xl border px-4;
+  }
+
+  .shad-form-label {
+    @apply  pt-2  w-full ;
+  }
+
+  .shad-form-message {
+    @apply  ml-4 ;
+  }
+}
