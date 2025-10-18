@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { createAccount } from "@/lib/actions/user.actions";
 // import { createAccount, signInUser } from "@/lib/actions/user.actions";
 // import OtpModal from "@/components/OTPModal";
 
@@ -50,21 +51,22 @@ const AuthForm = ({ type }: { type: FormType }) => {
     setIsLoading(true);
     setErrorMessage("");
 
-    // try {
-    //   const user =
-    //     type === "sign-up"
-    //       ? await createAccount({
-    //           fullName: values.fullName || "",
-    //           email: values.email,
-    //         })
-    //       : await signInUser({ email: values.email });
+    try {
+      const user =
+        type === "sign-up"
+          ? await createAccount({
+              fullName: values.fullName || "",
+              email: values.email,
+            })
+          : "" 
+        //   await signn({ email: values.email });
 
-    //   setAccountId(user.accountId);
-    // } catch {
-    //   setErrorMessage("Failed to create account. Please try again.");
-    // } finally {
-    //   setIsLoading(false);
-    // }
+      setAccountId(user.accountId);
+    } catch {
+      setErrorMessage("Failed to create account. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -122,7 +124,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
           <Button
             type="submit"
-            className="primary-btn h-[66px]"
+            className="bg-[#FA7275] hover:bg-[#FA7275]-100 transition-all rounded-full button text-[16px]  text-white  h-[66px]"
             disabled={isLoading}
           >
             {type === "sign-in" ? "Sign In" : "Sign Up"}
